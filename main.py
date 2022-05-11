@@ -17,4 +17,3 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import roc_curve,roc_auc_score
 
 
-print("Hello World")
