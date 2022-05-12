@@ -45,3 +45,18 @@ data = data[data['Inflight service'].notna()]
 data = data[data['satisfaction'].notna()]
 
 print("Las nuevas dimensiones del conjunto de datos son:",data.shape)
+
+data.loc[data['Gender'] == 'Male', 'Gender'] = '1'
+data.loc[data['Gender'] == 'Female', 'Gender'] = '0'
+
+data.loc[data['Customer Type'] == 'Loyal Customer', 'Customer Type'] = '1'
+data.loc[data['Customer Type'] == 'disloyal Customer', 'Customer Type'] = '0'
+
+data.loc[data['Class'] == 'Bussines', 'Class'] = '2'
+data.loc[data['Class'] == 'Eco Plus', 'Class'] = '1'
+data.loc[data['Class'] == 'Eco', 'Class'] = '0'
+
+data.loc[data['satisfaction'] == 'satisfied', 'satisfaction'] = '1'
+data.loc[data['satisfaction'] == 'neutral o dissatisfied', 'satisfaction'] = '0'
+
+#print(data)
