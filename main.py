@@ -18,6 +18,16 @@ from sklearn.metrics import roc_curve,roc_auc_score
 
 
 data = pd.read_csv("train.csv", sep=",") # Importar los datos
+test = pd.read_csv("test.csv", sep=",") # Importar los datos
+
+
+print("Los datos vacios en train son: \n")
+print(data.isnull().sum()) #Se mira cuales columnas les falta datos
+
+print("Los datos vacios en test son: \n")
+print(test.isnull().sum()) #Se mira cuales columnas les falta datos
+
+
 # Se eliminan las columnas que no se utilizaran
 data = data.drop(['id', 'Type of Travel', 'Flight Distance', 'Departure/Arrival time convenient', 'Departure Delay in Minutes','Arrival Delay in Minutes'], axis=1)
 print("Las dimensiones del conjunto de datos son:",data.shape)
@@ -59,5 +69,7 @@ data.loc[data['satisfaction'] == 'neutral or dissatisfied', 'satisfaction'] = '0
 
 Xo = pd.DataFrame(data, columns = ['Gender','Customer Type','Age','Class','Inflight wifi service','Ease of Online booking','Gate location','Food and drink','Online boarding','Seat comfort','Inflight entertainment','On-board service','Leg room service','Baggage handling','Checkin service','Inflight service'])
 Y  = pd.DataFrame(data, columns = ['satisfaction']) 
+
+test.isnull().sum() #Se mira cuales columnas les falta datos
 
 #print(data)
