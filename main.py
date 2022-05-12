@@ -17,3 +17,8 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import roc_curve,roc_auc_score
 
 
+data = pd.read_csv("train.csv", sep=",") # Importar los datos
+# Se eliminan las columnas que no se utilizaran
+data = data.drop(['id', 'Type of Travel', 'Departure Delay in Minutes','Arrival Delay in Minutes'], axis=1)
+print(data)
+print("Las dimensiones del conjunto de datos son:",data.shape)
