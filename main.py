@@ -19,8 +19,7 @@ from sklearn.metrics import roc_curve,roc_auc_score
 
 data = pd.read_csv("train.csv", sep=",") # Importar los datos
 # Se eliminan las columnas que no se utilizaran
-data = data.drop(['id', 'Type of Travel', 'Departure/Arrival time convenient', 'Departure Delay in Minutes','Arrival Delay in Minutes'], axis=1)
-#print(data)
+data = data.drop(['id', 'Type of Travel', 'Flight Distance', 'Departure/Arrival time convenient', 'Departure Delay in Minutes','Arrival Delay in Minutes'], axis=1)
 print("Las dimensiones del conjunto de datos son:",data.shape)
 
 #Eliminar las filas con valores nulos o completarlos con la media de los existentes
@@ -29,7 +28,6 @@ data = data[data['Gender'].notna()]
 data = data[data['Customer Type'].notna()]
 data = data[data['Age'].notna()]
 data = data[data['Class'].notna()]
-data = data[data['Flight Distance'].notna()]
 data = data[data['Inflight wifi service'].notna()]
 data = data[data['Ease of Online booking'].notna()]
 data = data[data['Gate location'].notna()]
