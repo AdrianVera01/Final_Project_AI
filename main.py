@@ -4,18 +4,17 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn import decomposition
-#from sklearn import datasets
-#from sklearn.preprocessing import StandardScaler
-#from sklearn.preprocessing import MinMaxScaler
-#from sklearn.decomposition import PCA, KernelPCA
-#from sklearn.model_selection import train_test_split
-#from matplotlib.colors import ListedColormap
-#from sklearn import svm
-#from sklearn.linear_model import LogisticRegression
-#from sklearn.metrics import matthews_corrcoef
-#from sklearn.metrics import accuracy_score
-#from sklearn.metrics import roc_curve,roc_auc_score
-
+from sklearn import datasets
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.decomposition import PCA, KernelPCA
+from sklearn.model_selection import train_test_split
+from matplotlib.colors import ListedColormap
+from sklearn import svm
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import matthews_corrcoef
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import roc_curve,roc_auc_score
 
 
 data = pd.read_csv("train.csv", sep=",") # Importar los datos
@@ -47,5 +46,20 @@ data = data[data['satisfaction'].notna()]
 
 print("Las nuevas dimensiones del conjunto de datos son:",data.shape)
 
+data.loc[data['Gender'] == 'Male', 'Gender'] = '1'
+data.loc[data['Gender'] == 'Female', 'Gender'] = '0'
 
-print("Hello World")
+data.loc[data['Customer Type'] == 'Loyal Customer', 'Customer Type'] = '1'
+data.loc[data['Customer Type'] == 'disloyal Customer', 'Customer Type'] = '0'
+
+data.loc[data['Class'] == 'Bussines', 'Class'] = '2'
+data.loc[data['Class'] == 'Eco Plus', 'Class'] = '1'
+data.loc[data['Class'] == 'Eco', 'Class'] = '0'
+
+data.loc[data['satisfaction'] == 'satisfied', 'satisfaction'] = '1'
+data.loc[data['satisfaction'] == 'neutral or dissatisfied', 'satisfaction'] = '0'
+
+Xo = pd.DataFrame(data, columns = ['Gender','Customer Type','Age','Class','Inflight wifi service','Ease of Online booking','Gate location','Food and drink','Online boarding','Seat comfort','Inflight entertainment','On-board service','Leg room service','Baggage handling','Checkin service','Inflight service'])
+Y  = pd.DataFrame(data, columns = ['satisfaction']) 
+
+#print(data)
