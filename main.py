@@ -60,7 +60,7 @@ data.loc[data['Gender'] == 'Female', 'Gender'] = '0'
 data.loc[data['Customer Type'] == 'Loyal Customer', 'Customer Type'] = '1'
 data.loc[data['Customer Type'] == 'disloyal Customer', 'Customer Type'] = '0'
 
-data.loc[data['Class'] == 'Bussines', 'Class'] = '2'
+data.loc[data['Class'] == 'Business', 'Class'] = '2'
 data.loc[data['Class'] == 'Eco Plus', 'Class'] = '1'
 data.loc[data['Class'] == 'Eco', 'Class'] = '0'
 
@@ -70,6 +70,35 @@ data.loc[data['satisfaction'] == 'neutral or dissatisfied', 'satisfaction'] = '0
 Xo = pd.DataFrame(data, columns = ['Gender','Customer Type','Age','Class','Inflight wifi service','Ease of Online booking','Gate location','Food and drink','Online boarding','Seat comfort','Inflight entertainment','On-board service','Leg room service','Baggage handling','Checkin service','Inflight service'])
 Y  = pd.DataFrame(data, columns = ['satisfaction']) 
 
+
 test.isnull().sum() #Se mira cuales columnas les falta datos
 
-#print(data)
+
+
+#--------------------NORMALIZACIÓN-----------------------------------
+
+#scaler = StandardScaler()
+#scaler.fit(Xo)
+
+scaler = MinMaxScaler()
+scaler.fit(Xo)
+print(Xo)
+
+X = scaler.transform(Xo)
+
+print(X,X.shape)
+
+#--------------------PCA-----------------------------------
+
+components=16
+pca = decomposition.PCA(n_components=components,whiten=True,svd_solver='auto')
+
+pca.fit(X)
+X = pca.transform(X)
+
+print("Pesos de PCA:",pca.explained_variance_ratio_)
+
+print(sum(pca.explained_variance_ratio_))
+
+#print("No es necesario hacer reducción dimensional")
+
