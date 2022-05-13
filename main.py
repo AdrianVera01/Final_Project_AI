@@ -70,25 +70,34 @@ Y  = pd.DataFrame(data, columns = ['satisfaction'])
 test.isnull().sum() #Se mira cuales columnas les falta datos
 
 
-#--------------------NORMALIZACIÓN-----------------------------------
+#--------------------NORMALIZACIÓN---------------------------------------------------
 
-#scaler = StandardScaler()
-#scaler.fit(Xo)
-scaler = MinMaxScaler()
-scaler.fit(Xo)
-print(Xo)
-X = scaler.transform(Xo)
-print(X,X.shape)
 
-#--------------------PCA-----------------------------------
+def normMinMax(Xo):
+    #scaler = StandardScaler()
+    #scaler.fit(Xo)
+    scaler = MinMaxScaler()
+    scaler.fit(Xo)
+    print(Xo)
+    X = scaler.transform(Xo)
+    print(X,X.shape)
+    return X
 
-components=15
-pca = decomposition.PCA(n_components=components,whiten=True,svd_solver='auto')
-pca.fit(X)
-X = pca.transform(X)
-print("Pesos de PCA:",pca.explained_variance_ratio_)
-sumpca = sum(pca.explained_variance_ratio_)
-print("Se puede hacer reduccion dimensional, quedaria con ",components,"y la suma de las componentes que quedan es:", sumpca,"\n")
+
+#--------------------PCA (X, Numero de componentes)-----------------------------------
+def PCA(X, comps):
+    pca = decomposition.PCA(n_components=comps,whiten=True,svd_solver='auto')
+    pca.fit(X)
+    X = pca.transform(X)
+    print("Pesos de PCA:",pca.explained_variance_ratio_)
+    sumpca = sum(pca.explained_variance_ratio_)
+    print("Se puede hacer reduccion dimensional, quedaria con ",comps,"y la suma de las componentes que quedan es:", sumpca,"\n")
+
+
+#--------------------REGRESION LOGISITCA----------------------------------------------
+X_norm = normMinMax(Xo)
+X_pca = PCA(X_norm,16)
+
 
 
 
