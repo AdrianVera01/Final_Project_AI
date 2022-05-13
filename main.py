@@ -20,13 +20,11 @@ from sklearn.metrics import roc_curve,roc_auc_score
 data = pd.read_csv("train.csv", sep=",") # Importar los datos
 test = pd.read_csv("test.csv", sep=",") # Importar los datos
 
-
 print("Los datos vacios en train son: \n")
 print(data.isnull().sum()) #Se mira cuales columnas les falta datos
 
 print("Los datos vacios en test son: \n")
 print(test.isnull().sum()) #Se mira cuales columnas les falta datos
-
 
 # Se eliminan las columnas que no se utilizaran
 data = data.drop(['id', 'Type of Travel', 'Flight Distance', 'Departure/Arrival time convenient', 'Departure Delay in Minutes','Arrival Delay in Minutes'], axis=1)
@@ -69,36 +67,29 @@ data.loc[data['satisfaction'] == 'neutral or dissatisfied', 'satisfaction'] = '0
 
 Xo = pd.DataFrame(data, columns = ['Gender','Customer Type','Age','Class','Inflight wifi service','Ease of Online booking','Gate location','Food and drink','Online boarding','Seat comfort','Inflight entertainment','On-board service','Leg room service','Baggage handling','Checkin service','Inflight service'])
 Y  = pd.DataFrame(data, columns = ['satisfaction']) 
-
-
 test.isnull().sum() #Se mira cuales columnas les falta datos
-
 
 
 #--------------------NORMALIZACIÓN-----------------------------------
 
 #scaler = StandardScaler()
 #scaler.fit(Xo)
-
 scaler = MinMaxScaler()
 scaler.fit(Xo)
 print(Xo)
-
 X = scaler.transform(Xo)
-
 print(X,X.shape)
 
 #--------------------PCA-----------------------------------
 
-components=16
+components=15
 pca = decomposition.PCA(n_components=components,whiten=True,svd_solver='auto')
-
 pca.fit(X)
 X = pca.transform(X)
-
 print("Pesos de PCA:",pca.explained_variance_ratio_)
+sumpca = sum(pca.explained_variance_ratio_)
+print("Se puede hacer reduccion dimensional, quedaria con ",components,"y la suma de las componentes que quedan es:", sumpca,"\n")
 
-print(sum(pca.explained_variance_ratio_))
 
-#print("No es necesario hacer reducción dimensional")
+
 
