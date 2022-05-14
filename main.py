@@ -69,9 +69,12 @@ Xo = pd.DataFrame(data, columns = ['Gender','Customer Type','Age','Class','Infli
 Y  = pd.DataFrame(data, columns = ['satisfaction']) 
 test.isnull().sum() #Se mira cuales columnas les falta datos
 
+#--------------------Seleccionar datos train y test para el modelo-----------------------------------
+
+X_train, X_test, Y_train, Y_test = train_test_split(Xo, Y, test_size=0.2, train_size=0.8, random_state=0)
+
 
 #--------------------Funcion Nomrmalizacion(X)---------------------------------------------------
-
 
 def normMinMax(Xo):
     #scaler = StandardScaler()
@@ -92,18 +95,21 @@ def PCA(X, comps):
     print("Pesos de PCA:",pca.explained_variance_ratio_)
     sumpca = sum(pca.explained_variance_ratio_)
     print("Se puede hacer reduccion dimensional, quedaria con ",comps,"y la suma de las componentes que quedan es:", sumpca,"\n")
+    return X
 
 
-#--------------------Seleccionar datos train y test----------------------------------------------
-X_norm = normMinMax(Xo)
+
+#-----------------------------Regresión Logística------------------------------------------
+X_norm = normMinMax(X_train)
 X_pca = PCA(X_norm,16)
 
-X_train, X_test, Y_train, Y_test = train_test_split(X_pca, Y, test_size=0.2, train_size=0.8, random_state=0)
-print(X_train)
 
 
+LR = LogisticRegression(penalty='l2',max_iter=10000, C=5,random_state=9)
+LR.fit(X_pca, Y_train)
+Acc=LR.score(X_pca, Y_train)
 
-
+print( "\n", "Accuracy LR:", Acc, "\n")
 
 
 
