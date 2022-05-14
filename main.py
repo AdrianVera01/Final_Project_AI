@@ -70,7 +70,7 @@ Y  = pd.DataFrame(data, columns = ['satisfaction'])
 test.isnull().sum() #Se mira cuales columnas les falta datos
 
 
-#--------------------NORMALIZACIÓN---------------------------------------------------
+#--------------------Funcion Nomrmalizacion(X)---------------------------------------------------
 
 
 def normMinMax(Xo):
@@ -84,7 +84,7 @@ def normMinMax(Xo):
     return X
 
 
-#--------------------PCA (X, Numero de componentes)-----------------------------------
+#--------------------Funcion PCA (X, Numero de componentes)-----------------------------------
 def PCA(X, comps):
     pca = decomposition.PCA(n_components=comps,whiten=True,svd_solver='auto')
     pca.fit(X)
@@ -94,9 +94,15 @@ def PCA(X, comps):
     print("Se puede hacer reduccion dimensional, quedaria con ",comps,"y la suma de las componentes que quedan es:", sumpca,"\n")
 
 
-#--------------------REGRESION LOGISITCA----------------------------------------------
+#--------------------Seleccionar datos train y test----------------------------------------------
 X_norm = normMinMax(Xo)
 X_pca = PCA(X_norm,16)
+
+X_train, X_test, Y_train, Y_test = train_test_split(X_pca, Y, test_size=0.2, train_size=0.8, random_state=0)
+print(X_train)
+
+
+
 
 
 
