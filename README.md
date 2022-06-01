@@ -1,2 +1,5 @@
 ## Proyecto Final Inteligencia Artificial - Satisfacción de los pasajeros de una Aerolinea
-Satisfacción de los pasageros de una Aerolínea
+
+#Se tiene como objetivo la predicción de qué tan satisfechos se encuentran los usuarios con una aerolínea.
+
+
