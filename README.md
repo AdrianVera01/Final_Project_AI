@@ -8,7 +8,8 @@ Se realizó preprocesamiento de los datos, normalización y PCA. Se propuso usar
 
 Resultados Obtenidos por cada Método:
 
-(Insertar aquí la imagen)
+![image](https://user-images.githubusercontent.com/79531784/171408542-8891cd1d-c263-48f4-bb6a-1c2618907820.png)
+
 
 Conclusiones:
 
