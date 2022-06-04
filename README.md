@@ -2,6 +2,8 @@
 
 Desarrollado por: Juanita Marulanda Argüello y Yorman Adrian Vera Rozo
 
+Video Youtube: https://youtu.be/samBTBn49WA
+
 Se tiene como objetivo la predicción de qué tan satisfechos (satisfecho o no satisfecho) se encuentran los usuarios con una aerolínea. El dataset se encuentra en https://www.kaggle.com/datasets/teejmahal20/airline-passenger-satisfaction. Los datos de entrenamiento tiene una cantidad de 103904 muestras. Con las siguientes características: 
 - "Gender"
 - "Customer Type"
