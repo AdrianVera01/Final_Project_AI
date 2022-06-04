@@ -27,6 +27,6 @@ Conclusiones:
 
 - Como el dataset tiene mas de 100000 datos, el GridSearch de las máquina de soporte vectorial puede tardar alrededor de 6 horas. Esto se debe a que también se tiene 3 hiperparámetros con distintos valores a iterar.
 - Tomando el Score del Coeficiente de Matthews las redes Neuronales tuvieron un mejor desempeño con los datos de validación, el mejor resultado para el Accuracy fue también Redes neuroanles, pero en el resultado de la ROC la regresión logística fue mejor. Sin embargo, los resultados obtenidos fueron muy cercanos, al contrario de SVM que tuvo unos resultados relativamente bajos (Coeficiente de Matthews = 0.4881...).
-- 
+
  
 
