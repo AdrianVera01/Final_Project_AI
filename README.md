@@ -19,7 +19,7 @@ Se tiene como objetivo la predicción de qué tan satisfechos (satisfecho o no s
 
 Se realizó preprocesamiento de los datos, normalización y PCA. Se propuso usar Regresión Logística, Máquinas de Soporte Vectorial y Redes Neuronales. Por medio de GridSearch se iteró para encontrar los mejores parámetros para cada uno de los métodos. El método que tenga mejor Coeficiente de correlación de Mathews es el seleccionado para la solución del problema.
 
-Resultados Obtenidos por cada Método:
+Resultados Obtenidos por cada Método en los datos de validación 'test.csv':
 
 ![image](https://user-images.githubusercontent.com/79531784/171976628-7a78595b-c4d5-4484-8e6c-74d2e8869be8.png)
 
